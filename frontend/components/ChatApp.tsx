@@ -1,18 +1,13 @@
-import dynamic from 'next/dynamic';
+'use client';
 
-// Dynamically import the client component with no SSR
-const ChatApp = dynamic(() => import('@/components/ChatApp'), {
-  ssr: false,
-  loading: () => (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-gray-900"></div>
-    </div>
-  ),
-});
+import { useEffect, useState } from 'react';
+import { supabase, type Profile } from '@/lib/supabase/client';
+import { AuthForm } from '@/components/auth/AuthForm';
+import { ChatRoom } from '@/components/chat/ChatRoom';
 
-export default function Home() {
-  return <ChatApp />;
-}
+export default function ChatApp() {
+  const [user, setUser] = useState<Profile | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -53,10 +48,10 @@ export default function Home() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p>Loading...</p>
+        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-gray-900"></div>
       </div>
     );
   }
 
-  return user ? <ChatRoom currentUser={user} /> : <AuthForm />;
+  return user ? <ChatRoom user={user} /> : <AuthForm />;
 }
