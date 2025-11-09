@@ -6,11 +6,7 @@ const nextConfig = {
   },
   images: { unoptimized: true },
   // Disable static page generation since we need dynamic data
-  staticPageGenerationTimeout: 0,
-  // Enable dynamic rendering for all pages
-  experimental: {
-    missingSuspenseWithCSRInDevelopment: false,
-  }
+  staticPageGenerationTimeout: 0
 };
 
 module.exports = nextConfig;

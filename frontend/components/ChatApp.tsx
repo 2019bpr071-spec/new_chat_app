@@ -53,5 +53,5 @@ export default function ChatApp() {
     );
   }
 
-  return user ? <ChatRoom user={user} /> : <AuthForm />;
+  return user ? <ChatRoom currentUser={user} /> : <AuthForm />;
 }
