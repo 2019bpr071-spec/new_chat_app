@@ -1,12 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
+  output: 'export',
   eslint: {
     ignoreDuringBuilds: true,
   },
   images: { unoptimized: true },
-  // Disable static page generation since we need dynamic data
-  staticPageGenerationTimeout: 0
+  basePath: process.env.NODE_ENV === 'production' ? '/new_chat_app' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/new_chat_app/' : '',
 };
 
 module.exports = nextConfig;
