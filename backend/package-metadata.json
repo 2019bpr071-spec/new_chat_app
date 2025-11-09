@@ -1,0 +1,6 @@
+{
+  "name": "chat-backend",
+  "repository": "2019bpr071-spec/new_chat_app",
+  "visibility": "public",
+  "registry": "ghcr.io"
+}
